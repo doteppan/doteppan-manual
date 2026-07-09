@@ -1,0 +1,183 @@
+{
+ "videos": [
+  {
+   "no": "1",
+   "date": "2025/04/30",
+   "title": "もんじゃ 焼き方",
+   "url": "https://youtu.be/Ec3L58XDq2o",
+   "id": "Ec3L58XDq2o",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "2",
+   "date": "2025/04/30",
+   "title": "焼きそば 焼き方",
+   "url": "https://youtu.be/yRQgMOkLac8",
+   "id": "yRQgMOkLac8",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "3",
+   "date": "2025/04/30",
+   "title": "お好み焼き 焼き方",
+   "url": "https://youtu.be/6jQoXb--93Y",
+   "id": "6jQoXb--93Y",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "4",
+   "date": "2025/12/15",
+   "title": "出汁・ドロ 作り方",
+   "url": "https://youtu.be/1C1PujPvulw",
+   "id": "1C1PujPvulw",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "5",
+   "date": "2025/12/15",
+   "title": "お出迎え～ご案内",
+   "url": "https://youtu.be/xpHbwG2SVlo",
+   "id": "xpHbwG2SVlo",
+   "category": "接客",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "6",
+   "date": "2025/12/15",
+   "title": "お見送り",
+   "url": "https://youtu.be/_ISg31zxrBY",
+   "id": "_ISg31zxrBY",
+   "category": "接客",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "7",
+   "date": "2025/12/15",
+   "title": "商品チェック～配膳",
+   "url": "https://youtu.be/-CTBeGBWSVU",
+   "id": "-CTBeGBWSVU",
+   "category": "接客",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "8",
+   "date": "2025/12/16",
+   "title": "メニュー説明とオーダー方法 ご案内",
+   "url": "https://youtu.be/Hqvxo9N3Q-s",
+   "id": "Hqvxo9N3Q-s",
+   "category": "接客",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "9",
+   "date": "2025/12/17",
+   "title": "サラダの仕込みと盛り付け",
+   "url": "https://youtu.be/Hs-7g0zZfUU",
+   "id": "Hs-7g0zZfUU",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "10",
+   "date": "2025/12/19",
+   "title": "あんバターもち焼き 焼き方",
+   "url": "https://youtu.be/VliM6iBEzGg",
+   "id": "VliM6iBEzGg",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "11",
+   "date": "2025/12/19",
+   "title": "リセットのやり方",
+   "url": "https://youtu.be/QjJQnvwqjHk",
+   "id": "QjJQnvwqjHk",
+   "category": "清掃・準備",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "12",
+   "date": "2026/01/07",
+   "title": "イカ平焼き 焼き方",
+   "url": "https://youtu.be/ej-HrLOCoxQ",
+   "id": "ej-HrLOCoxQ",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "13",
+   "date": "2026/01/07",
+   "title": "ニラ玉ソース炒め 焼き方",
+   "url": "https://youtu.be/nfcMJ-et6K8",
+   "id": "nfcMJ-et6K8",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "14",
+   "date": "2026/01/10",
+   "title": "電話応対について",
+   "url": "https://youtu.be/UImMWoW_cZY",
+   "id": "UImMWoW_cZY",
+   "category": "接客",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "15",
+   "date": "2026/02/13",
+   "title": "ホール業務のチェックポイント",
+   "url": "https://youtu.be/1uJiHHYTS1c",
+   "id": "1uJiHHYTS1c",
+   "category": "接客",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "16",
+   "date": "2026/02/28",
+   "title": "トイレ清掃～クイック清掃～",
+   "url": "https://youtu.be/ucfQzVja3cE",
+   "id": "ucfQzVja3cE",
+   "category": "清掃・準備",
+   "first_seen": "2026-07-09"
+  },
+  {
+   "no": "17",
+   "date": "2026/03/02",
+   "title": "ドロの作成",
+   "url": "https://youtu.be/G_SYfnjcmkc",
+   "id": "G_SYfnjcmkc",
+   "category": "調理",
+   "first_seen": "2026-07-09"
+  }
+ ],
+ "upcoming": [
+  {
+   "no": "18",
+   "title": "焼き方の説明、ご案内"
+  },
+  {
+   "no": "19",
+   "title": "クチコミの声掛けの仕方"
+  },
+  {
+   "no": "20",
+   "title": "アイドル時行うこと"
+  },
+  {
+   "no": "21",
+   "title": "身だしなみ"
+  },
+  {
+   "no": "22",
+   "title": "VOID？カード機のトラブルシューティング"
+  },
+  {
+   "no": "23",
+   "title": "ウマチャの作り方・管理方法"
+  }
+ ]
+}

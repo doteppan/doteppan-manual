@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>どてっぱん マニュアル動画一覧</title>
+<style>
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --ink: #29231d;
+    --ink-soft: #6d6257;
+    --line: #e6dfd5;
+    --accent: #9c3f1e;
+    --accent-ink: #ffffff;
+    --header-bg: #241f1b;
+    --header-ink: #f5efe7;
+    --new: #c8401f;
+    --shadow: 0 1px 3px rgba(41, 35, 29, .08), 0 4px 14px rgba(41, 35, 29, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1916;
+      --surface: #26221e;
+      --ink: #ede7de;
+      --ink-soft: #a89c8e;
+      --line: #3a342d;
+      --accent: #d97a50;
+      --accent-ink: #1c1916;
+      --header-bg: #141210;
+      --header-ink: #f5efe7;
+      --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium",
+      "Noto Sans JP", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    background: var(--header-bg); color: var(--header-ink);
+    padding: 28px 20px 24px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  .brand {
+    font-size: 12px; letter-spacing: .35em; color: var(--accent);
+    filter: brightness(1.6); font-weight: 600;
+  }
+  h1 { font-size: 22px; font-weight: 700; margin-top: 6px; letter-spacing: .04em; }
+  .header-sub { font-size: 13px; color: #b8ac9d; margin-top: 4px; }
+  .notice {
+    max-width: 1080px; margin: 20px auto 0; padding: 14px 16px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 4px solid var(--accent); border-radius: 6px;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .notice strong { color: var(--ink); }
+  main { max-width: 1080px; margin: 0 auto; padding: 20px 20px 48px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 8px 0 20px; }
+  #search {
+    flex: 1 1 220px; padding: 10px 14px; font-size: 15px;
+    border: 1px solid var(--line); border-radius: 8px;
+    background: var(--surface); color: var(--ink);
+  }
+  #search:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+  .filter {
+    padding: 7px 14px; font-size: 13px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft);
+    font-family: inherit;
+  }
+  .filter.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  .filter:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .count { font-size: 13px; color: var(--ink-soft); margin-bottom: 12px; }
+  .grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  }
+  .card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);
+    transition: transform .12s ease;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .thumb { position: relative; aspect-ratio: 16 / 9; background: #000; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 26px; text-shadow: 0 1px 6px rgba(0, 0, 0, .6); opacity: .85;
+  }
+  .badge-new {
+    position: absolute; top: 8px; left: 8px; background: var(--new); color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .card-body { padding: 12px 14px 14px; }
+  .card-title { font-size: 14.5px; font-weight: 600; line-height: 1.45; }
+  .card-meta { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .chip {
+    font-size: 11px; padding: 2px 9px; border-radius: 999px;
+    border: 1px solid var(--line); color: var(--ink-soft);
+  }
+  .date { font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .empty { color: var(--ink-soft); font-size: 14px; padding: 24px 0; display: none; }
+  section.upcoming { margin-top: 40px; }
+  section.upcoming h2 {
+    font-size: 15px; font-weight: 700; letter-spacing: .06em;
+    padding-bottom: 8px; border-bottom: 2px solid var(--line); margin-bottom: 12px;
+  }
+  section.upcoming ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; }
+  section.upcoming li {
+    font-size: 13px; color: var(--ink-soft); background: var(--surface);
+    border: 1px dashed var(--line); border-radius: 6px; padding: 6px 12px;
+  }
+  footer {
+    border-top: 1px solid var(--line); padding: 18px 20px 28px;
+    font-size: 12px; color: var(--ink-soft); text-align: center;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="brand">DOTEPPAN</p>
+    <h1>どてっぱん マニュアル動画一覧</h1>
+    <p class="header-sub">調理・接客・清掃の手順は、この動画マニュアルで確認できます。</p>
+  </div>
+</header>
+
+<div class="notice">
+  <strong>ご利用にあたって:</strong>
+  このページは現在作成中のため、内容が不完全な部分があります。今後も随時更新していきますので、定期的にご確認ください。
+  従業員の皆さまへこのページのURLをお渡しいただくのは問題ありませんが、<strong>部外者への共有はお控えください</strong>。
+</div>
+
+<main>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="動画を検索(例: 焼き方、清掃)" aria-label="動画を検索">
+    <div class="filters" role="group" aria-label="カテゴリで絞り込み">
+      <button class="filter on" data-filter="">すべて</button><button class="filter" data-filter="調理">調理</button><button class="filter" data-filter="接客">接客</button><button class="filter" data-filter="清掃・準備">清掃・準備</button>
+    </div>
+  </div>
+  <p class="count"><span id="shown">17</span> / 17 本を表示中</p>
+
+  <div class="grid" id="grid">
+
+      <a class="card" href="https://youtu.be/Ec3L58XDq2o" target="_blank" rel="noopener"
+         data-category="調理" data-search="もんじゃ 焼き方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/Ec3L58XDq2o/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Ec3L58XDq2o/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">もんじゃ 焼き方</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2025/04/30</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/yRQgMOkLac8" target="_blank" rel="noopener"
+         data-category="調理" data-search="焼きそば 焼き方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/yRQgMOkLac8/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/yRQgMOkLac8/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">焼きそば 焼き方</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2025/04/30</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/6jQoXb--93Y" target="_blank" rel="noopener"
+         data-category="調理" data-search="お好み焼き 焼き方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/6jQoXb--93Y/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/6jQoXb--93Y/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">お好み焼き 焼き方</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2025/04/30</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/1C1PujPvulw" target="_blank" rel="noopener"
+         data-category="調理" data-search="出汁・ドロ 作り方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/1C1PujPvulw/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/1C1PujPvulw/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">出汁・ドロ 作り方</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2025/12/15</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/xpHbwG2SVlo" target="_blank" rel="noopener"
+         data-category="接客" data-search="お出迎え～ご案内">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/xpHbwG2SVlo/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/xpHbwG2SVlo/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">お出迎え～ご案内</p>
+          <p class="card-meta"><span class="chip chip-service">接客</span>
+            <span class="date">2025/12/15</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/_ISg31zxrBY" target="_blank" rel="noopener"
+         data-category="接客" data-search="お見送り">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/_ISg31zxrBY/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/_ISg31zxrBY/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">お見送り</p>
+          <p class="card-meta"><span class="chip chip-service">接客</span>
+            <span class="date">2025/12/15</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/-CTBeGBWSVU" target="_blank" rel="noopener"
+         data-category="接客" data-search="商品チェック～配膳">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/-CTBeGBWSVU/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/-CTBeGBWSVU/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">商品チェック～配膳</p>
+          <p class="card-meta"><span class="chip chip-service">接客</span>
+            <span class="date">2025/12/15</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/Hqvxo9N3Q-s" target="_blank" rel="noopener"
+         data-category="接客" data-search="メニュー説明とオーダー方法 ご案内">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/Hqvxo9N3Q-s/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Hqvxo9N3Q-s/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">メニュー説明とオーダー方法 ご案内</p>
+          <p class="card-meta"><span class="chip chip-service">接客</span>
+            <span class="date">2025/12/16</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/Hs-7g0zZfUU" target="_blank" rel="noopener"
+         data-category="調理" data-search="サラダの仕込みと盛り付け">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/Hs-7g0zZfUU/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Hs-7g0zZfUU/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">サラダの仕込みと盛り付け</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2025/12/17</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/VliM6iBEzGg" target="_blank" rel="noopener"
+         data-category="調理" data-search="あんバターもち焼き 焼き方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/VliM6iBEzGg/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/VliM6iBEzGg/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">あんバターもち焼き 焼き方</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2025/12/19</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/QjJQnvwqjHk" target="_blank" rel="noopener"
+         data-category="清掃・準備" data-search="リセットのやり方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/QjJQnvwqjHk/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/QjJQnvwqjHk/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">リセットのやり方</p>
+          <p class="card-meta"><span class="chip chip-clean">清掃・準備</span>
+            <span class="date">2025/12/19</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/ej-HrLOCoxQ" target="_blank" rel="noopener"
+         data-category="調理" data-search="イカ平焼き 焼き方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/ej-HrLOCoxQ/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/ej-HrLOCoxQ/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">イカ平焼き 焼き方</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2026/01/07</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/nfcMJ-et6K8" target="_blank" rel="noopener"
+         data-category="調理" data-search="ニラ玉ソース炒め 焼き方">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/nfcMJ-et6K8/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/nfcMJ-et6K8/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">ニラ玉ソース炒め 焼き方</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2026/01/07</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/UImMWoW_cZY" target="_blank" rel="noopener"
+         data-category="接客" data-search="電話応対について">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/UImMWoW_cZY/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/UImMWoW_cZY/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">電話応対について</p>
+          <p class="card-meta"><span class="chip chip-service">接客</span>
+            <span class="date">2026/01/10</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/1uJiHHYTS1c" target="_blank" rel="noopener"
+         data-category="接客" data-search="ホール業務のチェックポイント">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/1uJiHHYTS1c/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/1uJiHHYTS1c/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">ホール業務のチェックポイント</p>
+          <p class="card-meta"><span class="chip chip-service">接客</span>
+            <span class="date">2026/02/13</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/ucfQzVja3cE" target="_blank" rel="noopener"
+         data-category="清掃・準備" data-search="トイレ清掃～クイック清掃～">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/ucfQzVja3cE/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/ucfQzVja3cE/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">トイレ清掃～クイック清掃～</p>
+          <p class="card-meta"><span class="chip chip-clean">清掃・準備</span>
+            <span class="date">2026/02/28</span></p>
+        </div>
+      </a>
+      <a class="card" href="https://youtu.be/G_SYfnjcmkc" target="_blank" rel="noopener"
+         data-category="調理" data-search="ドロの作成">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/G_SYfnjcmkc/mqdefault.jpg" alt=""
+               loading="lazy"
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/G_SYfnjcmkc/hqdefault.jpg'">
+          <span class="play" aria-hidden="true">▶</span>
+          
+        </div>
+        <div class="card-body">
+          <p class="card-title">ドロの作成</p>
+          <p class="card-meta"><span class="chip chip-cook">調理</span>
+            <span class="date">2026/03/02</span></p>
+        </div>
+      </a>
+  </div>
+  <p class="empty" id="empty">該当する動画が見つかりませんでした。</p>
+
+  <section class="upcoming">
+    <h2>準備中の動画(6本)</h2>
+    <ul>
+      <li>焼き方の説明、ご案内</li><li>クチコミの声掛けの仕方</li><li>アイドル時行うこと</li><li>身だしなみ</li><li>VOID？カード機のトラブルシューティング</li><li>ウマチャの作り方・管理方法</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  最終更新: 2026年07月09日 22:27(毎朝9時に自動チェック・更新)<br>
+  このページはスプレッドシート「マニュアル動画リスト」から自動生成されています。
+</footer>
+
+<script>
+  var search = document.getElementById("search");
+  var buttons = document.querySelectorAll(".filter");
+  var cards = document.querySelectorAll(".card");
+  var shown = document.getElementById("shown");
+  var empty = document.getElementById("empty");
+  var activeFilter = "";
+
+  function apply() {
+    var q = search.value.trim().toLowerCase();
+    var n = 0;
+    cards.forEach(function (c) {
+      var okCat = !activeFilter || c.dataset.category === activeFilter;
+      var okText = !q || c.dataset.search.toLowerCase().indexOf(q) !== -1;
+      var show = okCat && okText;
+      c.style.display = show ? "" : "none";
+      if (show) n++;
+    });
+    shown.textContent = n;
+    empty.style.display = n === 0 ? "block" : "none";
+  }
+  search.addEventListener("input", apply);
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      buttons.forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on");
+      activeFilter = b.dataset.filter;
+      apply();
+    });
+  });
+</script>
+</body>
+</html>
