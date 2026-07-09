@@ -21,6 +21,11 @@ CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&
 
 JST = timezone(timedelta(hours=9))
 
+# 表記の統一ルール(シート上の表記 → ページ上の表記)
+NORMALIZE = {
+    "ウマチャ": "UMACHA",
+}
+
 # タイトルからカテゴリを推定するルール(シート側にカテゴリ列ができたらそちらを優先)
 CATEGORY_RULES = [
     ("調理", ["焼き方", "作り方", "仕込み", "作成", "出汁", "ドロ", "ソース"]),
@@ -61,6 +66,8 @@ def parse(rows):
         no, uploaded, date, title, url = row[:5]
         if not title:
             continue
+        for before, after in NORMALIZE.items():
+            title = title.replace(before, after)
         if uploaded.upper() == "TRUE" and url:
             vid = youtube_id(url)
             if not vid:
