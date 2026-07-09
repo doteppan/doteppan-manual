@@ -22,7 +22,9 @@ jobs:
 
       - name: 変更があればコミットして公開
         run: |
-          if git diff --quiet index.html videos.json; then
+          # 動画リスト(videos.json)に変化がない場合は、時刻だけの差分を捨てて終了
+          if git diff --quiet videos.json; then
+            git checkout -- index.html
             echo "変更なし。公開ページはそのままです。"
           else
             git config user.name "github-actions[bot]"
