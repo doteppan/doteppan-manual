@@ -290,7 +290,7 @@ def render(videos, upcoming, new_ids):
 </main>
 
 <footer>
-  最終更新: {updated}(毎朝9時に自動チェック・更新)<br>
+  最終更新: {updated}(毎日自動チェック・更新)<br>
   このページはスプレッドシート「マニュアル動画リスト」から自動生成されています。
 </footer>
 
