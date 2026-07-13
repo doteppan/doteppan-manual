@@ -1,9 +1,7 @@
 name: ページ自動更新
 
 on:
-  schedule:
-    # 毎朝9時(日本時間)= UTC 0:00 に実行
-    - cron: "0 0 * * *"
+  # PC(Mac)の毎日の初回起動時にトリガーされる(~/bin/doteppan_update_trigger.sh から)。
   # GitHubの画面から手動でも実行できる(今すぐ更新したいとき用)
   workflow_dispatch:
 
